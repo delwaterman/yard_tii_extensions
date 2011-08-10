@@ -1,0 +1,9 @@
+# Routes for the Profiles Platform #
+Below are all routes for the profile project.
+
+
+<table class='routes_table'>
+<% current_routes.each do |route| %>
+    <tr><td><%= route.methods || "ANY" %></td><td><%= route.path %></td><td>See {<%= route.controller %>#<%= route.action %>}</td></tr>
+<% end %>
+</table>

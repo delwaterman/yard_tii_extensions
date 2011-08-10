@@ -1,0 +1,17 @@
+<h2>Accessible Attributes <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+<ul class='summary'>
+<% accessible_attributes.each do |attr, code_obj| %>
+  <li class='public'>
+    <span class='summary_signature'>
+      <% if !attr.simple? %>
+        <%= link_url(url_for(attr.complex_type), "<strong>#{h(attr)} (nested attributes for #{attr.complex_type.path})</strong>",
+                     :title => "##{h attr}") %>  
+      <% elsif code_obj.is_a?(YARD::CodeObjects::Proxy) %>
+        <strong><%= h(attr) %></strong>
+      <% else %>
+        <%= link_url(url_for(code_obj), "<strong>#{h(attr)}</strong>", :title => "##{h attr} (#{code_obj.scope} #{code_obj.type})") %>
+      <% end %>
+    </span>
+  </li>
+<% end %>
+</ul>
