@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
   s.files = [
     ".document",
     "Gemfile",
+    "Gemfile.lock",
     "LICENSE.txt",
     "README.rdoc",
     "Rakefile",
@@ -50,6 +51,7 @@ Gem::Specification.new do |s|
     "lib/yard-tii-extensions/match_and_print.rb",
     "lib/yard-tii-extensions/rails_2/route_descriptor_builder.rb",
     "lib/yard-tii-extensions/rails_3/route_descriptor_builder.rb",
+    "lib/yard-tii-extensions/railtie.rb",
     "lib/yard-tii-extensions/route_descriptor.rb",
     "lib/yard-tii-extensions/routes_md_generator.rb",
     "lib/yard-tii-extensions/url_parameter_tag.rb",
@@ -68,7 +70,8 @@ Gem::Specification.new do |s|
     "templates/liquid/LiquidCustomization.md.erb",
     "templates/routes_md_generator/routes.md.erb",
     "test/helper.rb",
-    "test/test_yard-tii-extensions.rb"
+    "test/test_yard-tii-extensions.rb",
+    "yard-tii-extensions.gemspec"
   ]
   s.homepage = %q{http://github.com/delwaterman/yard-tii-extensions}
   s.licenses = [%q{MIT}]
