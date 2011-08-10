@@ -34,6 +34,7 @@
 # end
 
 namespace :yard do
+  desc "Test rake"
   task :test_loading do
     puts "Yay!!! I ran"
   end
