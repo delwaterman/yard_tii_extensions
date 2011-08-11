@@ -1,12 +1,6 @@
 require 'yard'
 $:.unshift "#{File.dirname(__FILE__)}"
 
-# Let's get rake tasks loading
-
-# Configuration files working
-
-# Executable to configure file
-
 module YardTiiExtensions
   GEM_ROOT = File.expand_path(File.join(File.dirname(__FILE__), ".."))
   
