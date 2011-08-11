@@ -29,7 +29,7 @@ namespace :yard do
   namespace :generate do
     desc 'Builds the routes markdown file for further processing by yard'
     task :routes_markdown => [:environment, :load_libs] do
-      YardTiiExtension::RoutesMdGenerator.generate!
+      YardTiiExtensions::RoutesMdGenerator.generate!
     end
   end
 end
