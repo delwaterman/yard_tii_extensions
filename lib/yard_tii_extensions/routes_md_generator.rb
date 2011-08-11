@@ -1,5 +1,5 @@
 require 'erb'
-require 'yard_tii_extensions/route_descriptor'
+require 'yard-tii-extensions/route_descriptor'
 
 module YardTiiExtensions
 
