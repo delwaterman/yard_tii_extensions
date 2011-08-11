@@ -27,6 +27,7 @@ Gem::Specification.new do |s|
     "lib/tasks/yard_tii_extensions.rake",
     "lib/yard_tii_extensions.rb",
     "lib/yard_tii_extensions/active_record_attribute.rb",
+    "lib/yard_tii_extensions/doc_config.rb",
     "lib/yard_tii_extensions/extension_loader.rb",
     "lib/yard_tii_extensions/filters.rb",
     "lib/yard_tii_extensions/handlers/accepts_nested_attributes_handler.rb",
@@ -70,7 +71,8 @@ Gem::Specification.new do |s|
     "templates/liquid/LiquidCustomization.md.erb",
     "templates/routes_md_generator/routes.md.erb",
     "test/helper.rb",
-    "test/test_yard_tii_extensions.rb"
+    "test/test_yard-tii-extensions.rb",
+    "yard_tii_extensions.gemspec"
   ]
   s.homepage = %q{http://github.com/delwaterman/yard_tii_extensions}
   s.licenses = [%q{MIT}]
