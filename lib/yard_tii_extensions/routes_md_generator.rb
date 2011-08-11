@@ -6,7 +6,6 @@ module YardTiiExtensions
   class RoutesMdGenerator
     TEMPLATE_FILE = File.join(File.dirname(__FILE__), '../../templates/routes_md_generator/routes.md.erb')
     TARGET_DIR = Rails.root + 'doc'
-#    TARGET_DIR = File.join(File.dirname(__FILE__), '../../../../../doc')
 
     class <<self
 
@@ -16,7 +15,6 @@ module YardTiiExtensions
       end
 
       def generate_markdown
-        debugger
         current_routes = Routes.build.delete_if{|rt| /\/rails\/info\/properties/ =~ rt.path}
         ERB.new(template, nil, "<>").result(binding)
       end

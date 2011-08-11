@@ -36,8 +36,9 @@ class YARD::CLI::Yardoc
       checksums = ::YARD::Registry.checksums.dup
     end
     YARD.parse(files, excluded)
-    YardTiiExtensions::YardRoutesEngine.load_routes_into_registry!
-    YardTiiExtensions::LiquidCustomizationMdGenerator.render! if YardTiiExtensions::USE_LIQUID
+    config = YardTiiExtensions::DocConfig.instance
+    YardTiiExtensions::YardRoutesEngine.load_routes_into_registry! if config.need_routes?
+    YardTiiExtensions::LiquidCustomizationMdGenerator.render! if config.document_liquid?
     ::YARD::Registry.save(use_cache) if save_yardoc
     
     if generate

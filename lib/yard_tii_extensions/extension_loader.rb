@@ -2,57 +2,46 @@ module YardTiiExtensions
   
   module ExentsionLoader
     
-    def self.load_extensions(configuration)
+    def self.load_extensions(config = YardTiiExtensions::DocConfig.instance)
 
       require 'pathname'
       require 'yard_tii_extensions/yard_override'
-      require 'yard_tii_extensions/yard_routes_engine'
-      require 'yard_tii_extensions/routes_md_generator'
-      # require 'yard_tii_extensions/liquid_customization_md_generator' if ::YardTiiCom::USE_LIQUID
-      require 'yard_tii_extensions/handlers/before_filter_require_profile_handler'
+      require 'yard_tii_extensions/yard_routes_engine' if config.need_routes?
+      require 'yard_tii_extensions/routes_md_generator' if config.document_routes?
+      require 'yard_tii_extensions/liquid_customization_md_generator' if config.document_liquid?
+      
+      if config.require_user_filter
+        require 'yard_tii_extensions/handlers/before_filter_require_profile_handler' 
+        require 'yard_tii_extensions/handlers/legacy/before_filter_require_profile_handler'
+      end
+      
       require 'yard_tii_extensions/handlers/attr_protected_handler'
       require 'yard_tii_extensions/handlers/attr_accessible_handler'
       require 'yard_tii_extensions/handlers/attr_accessor_handler'
       require 'yard_tii_extensions/handlers/accepts_nested_attributes_handler'
       require 'yard_tii_extensions/handlers/validate_presence_of_handler'
-      require 'yard_tii_extensions/handlers/legacy/before_filter_require_profile_handler'
+      
       require 'yard_tii_extensions/handlers/legacy/accepts_nested_attributes_handler'
       require 'yard_tii_extensions/handlers/legacy/attr_accessible_handler'
       require 'yard_tii_extensions/handlers/legacy/attr_accessor_handler'
       require 'yard_tii_extensions/handlers/legacy/attr_protected_handler'
-      require 'yard_tii_extensions/handlers/legacy/super_serialize_handler'
+      require 'yard_tii_extensions/handlers/legacy/super_serialize_handler' if config.super_serialize?
       require 'yard_tii_extensions/handlers/legacy/validate_acceptance_of_handler'
       require 'yard_tii_extensions/handlers/legacy/validate_confirmation_of_handler'
       require 'yard_tii_extensions/handlers/legacy/validate_presence_of_handler'
       require 'yard_tii_extensions/handlers/legacy/validator_handler_helper'
       
-      # require 'yard_tii_extensions/liquid_handlers'
+      if config.document_liquid?
+        require 'yard_tii_extensions/liquid_handlers'
+        YARD::Tags::Library.define_tag("Liquid Template Variables", :drop, :with_types_and_name)
+      end
       
-      require 'yard_tii_extensions/url_parameter_tag'
-      
-      #template_dir = Pathname.new(File.dirname(__FILE__) + 'templates').realpath.to_s
-      template_dir = Pathname.new(File.dirname(__FILE__) + '/../templates').to_s
-      #puts "template_dir: #{template_dir}"
-      YARD::Templates::Engine.register_template_path(template_dir)
-      #puts "template_paths: " + YARD::Templates::Engine.template_paths.inspect
-      
-      # if YardTiiExtensions::USE_LIQUID
-      #    YARD::Tags::Library.define_tag("Liquid Template Variables", :drop, :with_types_and_name)
-      #  end
-      
-      
-      YARD::Tags::Library.define_tag("URL Parameters", :url_param, ::YardForLiquid::UrlParameterTag)
-      YARD::Tags::Library.define_tag("Responses for formats", :format, :with_name)
-      YARD::Tags::Library.define_tag("Query String", :query_string)
-      
-      # ROUTES FILE
-      # ROUTES_FILE = File.join(File.dirname(__FILE__), "../../../../tmp/routes.txt")
-      
-      # class String
-      #   def camelcase
-      #     gsub(/\/(.?)/) { "::#{$1.upcase}" }.gsub(/(?:^|_)(.)/) { $1.upcase }
-      #   end
-      # end      
+      if config.url_parameters?
+        require 'yard_tii_extensions/url_parameter_tag'
+        YARD::Tags::Library.define_tag("URL Parameters", :url_param, ::YardForLiquid::UrlParameterTag)
+        YARD::Tags::Library.define_tag("Responses for formats", :format, :with_name)
+        YARD::Tags::Library.define_tag("Query String", :query_string)
+      end
     end
     
     
