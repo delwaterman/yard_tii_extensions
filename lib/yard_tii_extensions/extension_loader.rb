@@ -5,30 +5,30 @@ module YardTiiExtensions
     def self.load_extensions(configuration)
 
       require 'pathname'
-      require 'yard-tii-extensions/yard_override'
-      require 'yard-tii-extensions/yard_routes_engine'
-      require 'yard-tii-extensions/routes_md_generator'
-      # require 'yard-tii-extensions/liquid_customization_md_generator' if ::YardTiiCom::USE_LIQUID
-      require 'yard-tii-extensions/handlers/before_filter_require_profile_handler'
-      require 'yard-tii-extensions/handlers/attr_protected_handler'
-      require 'yard-tii-extensions/handlers/attr_accessible_handler'
-      require 'yard-tii-extensions/handlers/attr_accessor_handler'
-      require 'yard-tii-extensions/handlers/accepts_nested_attributes_handler'
-      require 'yard-tii-extensions/handlers/validate_presence_of_handler'
-      require 'yard-tii-extensions/handlers/legacy/before_filter_require_profile_handler'
-      require 'yard-tii-extensions/handlers/legacy/accepts_nested_attributes_handler'
-      require 'yard-tii-extensions/handlers/legacy/attr_accessible_handler'
-      require 'yard-tii-extensions/handlers/legacy/attr_accessor_handler'
-      require 'yard-tii-extensions/handlers/legacy/attr_protected_handler'
-      require 'yard-tii-extensions/handlers/legacy/super_serialize_handler'
-      require 'yard-tii-extensions/handlers/legacy/validate_acceptance_of_handler'
-      require 'yard-tii-extensions/handlers/legacy/validate_confirmation_of_handler'
-      require 'yard-tii-extensions/handlers/legacy/validate_presence_of_handler'
-      require 'yard-tii-extensions/handlers/legacy/validator_handler_helper'
+      require 'yard_tii_extensions/yard_override'
+      require 'yard_tii_extensions/yard_routes_engine'
+      require 'yard_tii_extensions/routes_md_generator'
+      # require 'yard_tii_extensions/liquid_customization_md_generator' if ::YardTiiCom::USE_LIQUID
+      require 'yard_tii_extensions/handlers/before_filter_require_profile_handler'
+      require 'yard_tii_extensions/handlers/attr_protected_handler'
+      require 'yard_tii_extensions/handlers/attr_accessible_handler'
+      require 'yard_tii_extensions/handlers/attr_accessor_handler'
+      require 'yard_tii_extensions/handlers/accepts_nested_attributes_handler'
+      require 'yard_tii_extensions/handlers/validate_presence_of_handler'
+      require 'yard_tii_extensions/handlers/legacy/before_filter_require_profile_handler'
+      require 'yard_tii_extensions/handlers/legacy/accepts_nested_attributes_handler'
+      require 'yard_tii_extensions/handlers/legacy/attr_accessible_handler'
+      require 'yard_tii_extensions/handlers/legacy/attr_accessor_handler'
+      require 'yard_tii_extensions/handlers/legacy/attr_protected_handler'
+      require 'yard_tii_extensions/handlers/legacy/super_serialize_handler'
+      require 'yard_tii_extensions/handlers/legacy/validate_acceptance_of_handler'
+      require 'yard_tii_extensions/handlers/legacy/validate_confirmation_of_handler'
+      require 'yard_tii_extensions/handlers/legacy/validate_presence_of_handler'
+      require 'yard_tii_extensions/handlers/legacy/validator_handler_helper'
       
-      # require 'yard-tii-extensions/liquid_handlers'
+      # require 'yard_tii_extensions/liquid_handlers'
       
-      require 'yard-tii-extensions/url_parameter_tag'
+      require 'yard_tii_extensions/url_parameter_tag'
       
       #template_dir = Pathname.new(File.dirname(__FILE__) + 'templates').realpath.to_s
       template_dir = Pathname.new(File.dirname(__FILE__) + '/../templates').to_s

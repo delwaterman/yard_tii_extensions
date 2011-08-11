@@ -70,7 +70,7 @@ Gem::Specification.new do |s|
     "templates/liquid/LiquidCustomization.md.erb",
     "templates/routes_md_generator/routes.md.erb",
     "test/helper.rb",
-    "test/test_yard-tii-extensions.rb"
+    "test/test_yard_tii_extensions.rb"
   ]
   s.homepage = %q{http://github.com/delwaterman/yard_tii_extensions}
   s.licenses = [%q{MIT}]

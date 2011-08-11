@@ -6,7 +6,7 @@ task :whitelabel => ['yard:load_libs', 'yard:generate', 'yard:json_api']
 namespace :yard do
   task :load_libs do
     require 'yard'
-    require 'yard-tii-extensions/extension_loader'
+    require 'yard_tii_extensions/extension_loader'
     debugger
     YardTiiExtensions::ExentsionLoader.load_extensions(nil)
     YARD::Rake::YardocTask.new('yard:original') do |t|

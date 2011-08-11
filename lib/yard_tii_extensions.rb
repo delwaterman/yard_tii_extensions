@@ -10,7 +10,7 @@ module YardTiiExtensions
   GEM_ROOT = File.expand_path(File.join(File.dirname(__FILE__), ".."))
   
   if defined?(Rails)
-    require 'yard-tii-extensions/railtie'
+    require 'yard_tii_extensions/railtie'
     RAILS_3 = /^3\./ =~ Rails.version
     RAILS_2 = !RAILS_3
   end
