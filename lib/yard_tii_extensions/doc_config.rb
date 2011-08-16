@@ -1,8 +1,9 @@
 require 'pathname'
+require 'singleton'
 module YardTiiExtensions
   
   class DocConfig
-    include Singleton
+    include ::Singleton
     
     # The name of the project
     attr_accessor :project_name

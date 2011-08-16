@@ -1,4 +1,5 @@
 require 'yard'
+require 'bluecloth'
 $:.unshift "#{File.dirname(__FILE__)}"
 
 module YardTiiExtensions
