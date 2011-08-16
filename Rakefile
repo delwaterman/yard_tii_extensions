@@ -17,8 +17,12 @@ Jeweler::Tasks.new do |gem|
   gem.name = "yard_tii_extensions"
   gem.homepage = "http://github.com/delwaterman/yard_tii_extensions"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{Set of extensions for YARD documentation tool commonly used by Time Inc.}
+  gem.description = <<-DOC
+    Set of extensions for YARD documentation tool commonly used by Time Inc. This includes routes
+    url params, response formats, and modifications that is used to build documentation for 
+    other Time Inc Developers to use our standard JSON services
+    DOC
   gem.email = "orion_delwaterman@timeinc.com"
   gem.authors = ["Orion Delwaterman"]
   # dependencies defined in Gemfile

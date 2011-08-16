@@ -9,8 +9,11 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Orion Delwaterman}]
-  s.date = %q{2011-08-11}
-  s.description = %q{TODO: longer description of your gem}
+  s.date = %q{2011-08-16}
+  s.description = %q{    Set of extensions for YARD documentation tool commonly used by Time Inc. This includes routes
+    url params, response formats, and modifications that is used to build documentation for 
+    other Time Inc Developers to use our standard JSON services
+}
   s.email = %q{orion_delwaterman@timeinc.com}
   s.extra_rdoc_files = [
     "LICENSE.txt",
@@ -78,7 +81,7 @@ Gem::Specification.new do |s|
   s.licenses = [%q{MIT}]
   s.require_paths = [%q{lib}]
   s.rubygems_version = %q{1.8.6}
-  s.summary = %q{TODO: one-line summary of your gem}
+  s.summary = %q{Set of extensions for YARD documentation tool commonly used by Time Inc.}
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
