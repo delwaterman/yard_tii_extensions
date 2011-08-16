@@ -21,7 +21,7 @@ Jeweler::Tasks.new do |gem|
   gem.description = <<-DOC
     Set of extensions for YARD documentation tool commonly used by Time Inc. This includes routes
     url params, response formats, and modifications that is used to build documentation for 
-    other Time Inc Developers to use our standard JSON services
+    other Time Inc Developers to use our standard JSON services.
     DOC
   gem.email = "orion_delwaterman@timeinc.com"
   gem.authors = ["Orion Delwaterman"]

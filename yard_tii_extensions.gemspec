@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.date = %q{2011-08-16}
   s.description = %q{    Set of extensions for YARD documentation tool commonly used by Time Inc. This includes routes
     url params, response formats, and modifications that is used to build documentation for 
-    other Time Inc Developers to use our standard JSON services
+    other Time Inc Developers to use our standard JSON services.
 }
   s.email = %q{orion_delwaterman@timeinc.com}
   s.extra_rdoc_files = [
