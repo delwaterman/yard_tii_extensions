@@ -18,6 +18,7 @@ if config.json_api
     t.options = ["--title", config.application_name, "--output-dir", "./doc/yard/json_api", "--template", "json_api", "--format", "js"]
   end
   reset_description('yard:json_api', 'Generates the JSON API for communicating with the server')
+  task "yard:json_api" => [:environment, "yard:load_libs"]
   default_tasks << "yard:json_api"
 end
 
