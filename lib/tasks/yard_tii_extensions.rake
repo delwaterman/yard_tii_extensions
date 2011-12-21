@@ -13,12 +13,12 @@ if config.document_routes
 end
 
 if config.json_api
-  default_tasks << 'Generates the JSON API for communicating with the server'
   YARD::Rake::YardocTask.new('yard:json_api') do |t|
     t.files   = ['lib/**/*.rb', 'app/**/*.rb', '-', 'doc/*.md']
-    t.options = %w(--title Time\ Community\ Platform --output-dir ./doc/yard/json_api --template json_api --format js)
+    t.options = ["--title", config.application_name, "--output-dir", "./doc/yard/json_api", "--template", "json_api", "--format", "js"]
   end
-  reset_description('yard:json_api', "Generate the JSON API documentation")
+  reset_description('yard:json_api', 'Generates the JSON API for communicating with the server')
+  default_tasks << "yard:json_api"
 end
 
 desc "Generates all yard documentation for project"
