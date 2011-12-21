@@ -3,18 +3,18 @@ require 'erb'
 module YardTiiExtensions
   class LiquidCustomizationMdGenerator
     TEMPLATE_FILE = File.join(File.dirname(__FILE__), '../../templates/liquid/LiquidCustomization.md.erb')
-    TARGET_DIR = File.join(File.dirname(__FILE__), '../../../../../doc')
 
     class <<self
 
-      def render!(register = YARD::Registry)
+      def render!(register = YARD::Registry, yard_extensions_config = ::YardTiiExtensions::DocConfig.instance)
+        @yard_extensions_config = yard_extensions_config
         @register = register
         write_to_file(template.result(binding))
       end
 
       def tag_docs
         @tag_docs ||= tags.inject([]) do |docs, tag|
-          docs + tag['liquid_tags'].collect{|l_tag|
+          docs + (tag['liquid_tags'] || []).collect{|l_tag|
             "#{l_tag} - {#{tag.path}} #{("- " + tag.docstring.summary) unless tag.docstring.empty?}"
           }
         end.sort
@@ -43,26 +43,25 @@ module YardTiiExtensions
       end
 
       def tags
-        @tags ||= @register.objects.values.select do |object|
+        @tags ||= @register.all.select do |object|
           object.is_a?(YARD::CodeObjects::ClassObject) && tag_base_classes.detect{|klass| object.inheritance_tree.include?(klass)}
         end.sort_by{|o| o.path.to_s}
       end
 
       def drops
-        @drops ||= @register.objects.values.select do |object|
+        @drops ||= @register.all.select do |object|
           object.is_a?(YARD::CodeObjects::ClassObject) && object.inheritance_tree.include?(base_drop_class)
         end.sort_by{|o| o.path.to_s}
       end
 
       def filters
-        @filters ||= @register.objects.values.select do |object|
+        @filters ||= @register.all.select do |object|
           object['liquid_filters']
         end.collect{|o| o.meths(:included => true, :scope => :instance, :visibility => :public)}.flatten.sort_by{|m| m.name.to_s}
       end
 
       def write_to_file(content)
-        filename = File.join(TARGET_DIR, 'LiquidCustomization.md')
-        File.open(filename, 'w') do |file|
+        File.open(target_file, 'w') do |file|
           file << content
         end
       end
@@ -73,6 +72,10 @@ module YardTiiExtensions
 
       def base_drop_class
         @base_drop_class ||= P(Liquid::Drop)
+      end
+      
+      def target_file
+        File.join(@yard_extensions_config.application_root, "doc", 'LiquidCustomization.md')
       end
 
     end

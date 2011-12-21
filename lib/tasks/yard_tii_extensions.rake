@@ -26,7 +26,7 @@ task :yard => default_tasks
 
 YARD::Rake::YardocTask.new('yard:original') do |t|
   t.files   = ['lib/**/*.rb', 'app/**/*.rb', 'config/initializers/*.rb', '-', 'doc/*.md']
-  t.options = ["--title", config.project_name, "--output-dir", "./doc/yard"]
+  t.options = ["--title", config.application_name, "--output-dir", "./doc/yard"]
 end
 reset_description('yard:original', "The basic documentation generation for YARD")
 

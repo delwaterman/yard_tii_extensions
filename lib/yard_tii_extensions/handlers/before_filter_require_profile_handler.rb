@@ -2,6 +2,7 @@ require 'yard_tii_extensions/filters'
 
 module YardTiiExtensions
   
+  # TODO Clean up this class
   class BeforeFilterRequireProfileHandler < YARD::Handlers::Ruby::Base
     handles method_call(:before_filter)
     handles method_call(:skip_before_filter)

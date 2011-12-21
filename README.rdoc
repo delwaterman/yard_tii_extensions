@@ -17,3 +17,7 @@ Description goes here.
 Copyright (c) 2011 Orion Delwaterman. See LICENSE.txt for
 further details.
 
+== TODO
+
+* Better method call wrapper for register_tag and register_filter for liquid
+

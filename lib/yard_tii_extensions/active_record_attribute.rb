@@ -17,7 +17,7 @@ module YardTiiExtensions
     end
 
     def required?(conditional = false)
-      conditional ? (requirement != nil) : (requirement && requirement.absolute?)
+      conditional ? (!!requirement) : (requirement && requirement.absolute?)
     end
 
     def to_s
@@ -101,12 +101,12 @@ module YardTiiExtensions
 
   module ActiveRecordAttributesHelper
     def ar_attribute(name, options = {})
-      owner[:active_record_attributes] ||= ActiveRecordAttributes.new
-      owner[:active_record_attributes].find_or_build(name, options)
+      namespace[:active_record_attributes] ||= ActiveRecordAttributes.new
+      namespace[:active_record_attributes].find_or_build(name, options)
     end
 
     def active_record_object?
-      owner.inheritance_tree.include?(P("ActiveRecord::Base"))
+      namespace.inheritance_tree.include?(P("ActiveRecord::Base"))
     end
   end
 

@@ -7,10 +7,15 @@ module YardTiiExtensions
       handles method_call(:accepts_nested_attributes_for)
 
       def process
-        nested_options = pull_options do |key, value|
-          (key == ":allow_destroy" && value == "true")
+        nested_options = options.to_a.inject({}) do |hash, key_and_value|
+          key, value = key_and_value
+          if key.source == ":allow_destroy" && value.source == "true"
+            hash.merge(key.source => value.source)
+          else
+            hash
+          end
         end
-        nested_options ||= {}
+        
         attributes.each do |children|
           ar_attribute("#{children}_attributes", nested_options.merge(:complex_type => determine_type(children)))
         end
@@ -29,7 +34,6 @@ module YardTiiExtensions
       end
 
       def actual_klass
-        # @actual_klass ||= owner.path.constantize
         @actual_klass ||= namespace.path.constantize
       end
       

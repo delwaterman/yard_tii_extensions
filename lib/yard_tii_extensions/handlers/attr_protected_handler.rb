@@ -1,8 +1,10 @@
 require 'yard_tii_extensions/active_record_attribute'
+require 'yard_tii_extensions/handlers/class_statements_helper'
 module YardTiiExtensions
 
   class AttrProtectedMatcher < YARD::Handlers::Ruby::Base
     include ActiveRecordAttributesHelper
+    include ClassStatementsHelper
     
     handles method_call(:attr_protected)
     
@@ -10,17 +12,6 @@ module YardTiiExtensions
       attributes.each do |attr|
         ar_attribute(attr).accessible = false
       end
-    end
-    
-    def attributes
-      @attributes ||= statement.parameters.collect do |param|
-        attribute_name(param)
-      end.compact
-    end
-    
-    def attribute_name(param_ast)
-      return nil unless param_ast
-      param_ast.jump(:ident).source
     end
 
   end

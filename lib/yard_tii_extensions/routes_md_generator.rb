@@ -16,6 +16,7 @@ module YardTiiExtensions
 
       def generate_markdown
         current_routes = Routes.build.delete_if{|rt| /\/rails\/info\/properties/ =~ rt.path}
+        application_name = DocConfig.instance.application_name
         ERB.new(template, nil, "<>").result(binding)
       end
     

@@ -7,22 +7,29 @@ module YardTiiExtensions
     # include ValidatorHandlerHelper
     include ActiveRecordAttributesHelper
     include ClassStatementsHelper
-    # VALIDATION_STMNT = /^validates_presence_of\s+(.*)/
+
     handles method_call(:validates_presence_of)
 
     def process
       conditions = pull_options do |key, value|
-        case key
+        case key.source
           when ":if", ":unless", ":on"
             true
           when ":allow_nil"
-            value == "true"
+            value.source == "true"
           else
             false
         end
       end
       
-      conditions = nil if conditions.empty?
+      conditions = if conditions.empty?
+        nil
+      else
+        conditions.to_a.collect do |key, value|
+          "#{key.source} => #{value.source}"
+        end.join(" and ")
+      end
+      
       attributes.each do |param|
         ar_attribute(param).required(conditions)
       end

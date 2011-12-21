@@ -6,9 +6,9 @@ module YardTiiExtensions
     include ::Singleton
     
     # The name of the project
-    attr_accessor :project_name
+    attr_accessor :application_name
     # A short description of the project
-    attr_accessor :project_description
+    attr_accessor :application_description
     # True if the project uses Liquid Templates, would need documentation for those templates
     attr_accessor :document_liquid
     alias_method :document_liquid?, :document_liquid
@@ -27,6 +27,9 @@ module YardTiiExtensions
     # Uses Ary's super_serialize plugn
     attr_accessor :super_serialize
     alias_method :super_serialize?, :super_serialize
+    # The root of the application
+    attr_accessor :application_root
+    
     
     # True if the configuration was read
     attr_accessor :config_read
@@ -38,7 +41,7 @@ module YardTiiExtensions
                 :json_api             => false,
                 :super_serialize      => false}
                 
-    ATTRS = [:project_name, :project_description] + DEFAULTS.keys
+    ATTRS = [:application_name, :application_description, :application_root] + DEFAULTS.keys
     
     class Builder
       def initialize(config)
@@ -79,6 +82,7 @@ module YardTiiExtensions
       DEFAULTS.each do |attr, value|
         self.send("#{attr}=", value)
       end
+      self.application_root = Rails.root
       config_read = false
     end
       
