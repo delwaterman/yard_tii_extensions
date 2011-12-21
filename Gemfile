@@ -2,7 +2,7 @@ source "http://rubygems.org"
 # Add dependencies required to use your gem here.
 # Example:
 #   gem "activesupport", ">= 2.3.5"
-gem "yard", "~> 0.6.8"
+gem "yard", "~> 0.7.4"
 gem "bluecloth"
 
 # Add dependencies to develop your gem here.

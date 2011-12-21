@@ -9,12 +9,13 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Orion Delwaterman}]
-  s.date = %q{2011-08-16}
+  s.date = %q{2011-12-21}
   s.description = %q{    Set of extensions for YARD documentation tool commonly used by Time Inc. This includes routes
     url params, response formats, and modifications that is used to build documentation for 
     other Time Inc Developers to use our standard JSON services.
 }
   s.email = %q{orion_delwaterman@timeinc.com}
+  s.executables = [%q{time_yardoc_setup}]
   s.extra_rdoc_files = [
     "LICENSE.txt",
     "README.rdoc"
@@ -27,6 +28,7 @@ Gem::Specification.new do |s|
     "README.rdoc",
     "Rakefile",
     "VERSION",
+    "bin/time_yardoc_setup",
     "lib/tasks/yard_tii_extensions.rake",
     "lib/yard_tii_extensions.rb",
     "lib/yard_tii_extensions/active_record_attribute.rb",
@@ -51,7 +53,6 @@ Gem::Specification.new do |s|
     "lib/yard_tii_extensions/handlers/legacy/validator_handler_helper.rb",
     "lib/yard_tii_extensions/handlers/validate_presence_of_handler.rb",
     "lib/yard_tii_extensions/liquid_customization_md_generator.rb",
-    "lib/yard_tii_extensions/liquid_handlers.rb",
     "lib/yard_tii_extensions/match_and_print.rb",
     "lib/yard_tii_extensions/rails_2/route_descriptor_builder.rb",
     "lib/yard_tii_extensions/rails_3/route_descriptor_builder.rb",
@@ -87,14 +88,14 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<yard>, ["~> 0.6.8"])
+      s.add_runtime_dependency(%q<yard>, ["~> 0.7.4"])
       s.add_runtime_dependency(%q<bluecloth>, [">= 0"])
       s.add_development_dependency(%q<shoulda>, [">= 0"])
       s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.6.4"])
       s.add_development_dependency(%q<rcov>, [">= 0"])
     else
-      s.add_dependency(%q<yard>, ["~> 0.6.8"])
+      s.add_dependency(%q<yard>, ["~> 0.7.4"])
       s.add_dependency(%q<bluecloth>, [">= 0"])
       s.add_dependency(%q<shoulda>, [">= 0"])
       s.add_dependency(%q<bundler>, ["~> 1.0.0"])
@@ -102,7 +103,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<rcov>, [">= 0"])
     end
   else
-    s.add_dependency(%q<yard>, ["~> 0.6.8"])
+    s.add_dependency(%q<yard>, ["~> 0.7.4"])
     s.add_dependency(%q<bluecloth>, [">= 0"])
     s.add_dependency(%q<shoulda>, [">= 0"])
     s.add_dependency(%q<bundler>, ["~> 1.0.0"])
