@@ -10,12 +10,13 @@ module YardTiiExtensions
 
     def process
       conditions = pull_options do |key, condition|
-        %w(:if :unless :on).include?(key.source) || (key.source == "allow_nil" && condition.source == "true")
+        %w(:if :unless :on).include?(key.source) || (key.source == ":allow_nil" && condition.source == "true")
       end
 
+      conditions = conditions.collect{|k, v| "#{k.source} => #{v.source}"}
       attributes.each do |param|
         ar_attr = ar_attribute(param)
-        ar_attr.required(conditions.collect(&:source).join(' and ')) if conditions.any?
+        ar_attr.required(conditions.join(' and ')) if conditions.any?
       end
     end
   

@@ -22,8 +22,6 @@
   <% else %>
 
   <% end %>
-  <% #debugger if object.namespace[:filters]; filters_for_me = object.namespace[:filters] ? object.namespace.filters_for(object.name) : [] %>
-  <% #filters_for_me = [] %>
   <% filter_messages.each do |message| %>
     <span class="aliases"><%= message %></span>
   <% end %>

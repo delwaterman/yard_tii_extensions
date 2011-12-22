@@ -58,18 +58,32 @@ module YardTiiExtensions
     end
 
     def complex_type
-      case @complex_type
-        when String
+      case
+        when polymorphic?
           P(@complex_type)
-        when Class
+        when @complex_type.is_a?(String)
+          P(@complex_type)
+        when @complex_type.is_a?(Symbol)
           P(@complex_type.to_s)
         else
           @complex_type
       end
     end
+    
+    def complex_type=(value)
+      if value.is_a?(Hash) && (@polymorphic = value.key?(:polymorphic))
+        @complex_type = value[:polymorphic]
+      else
+        @complex_type = value
+      end
+    end
 
     def simple?
       false
+    end
+    
+    def polymorphic?
+      @polymorphic
     end
 
     def convert_to_nested

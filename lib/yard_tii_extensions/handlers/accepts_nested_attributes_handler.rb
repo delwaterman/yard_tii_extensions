@@ -25,7 +25,8 @@ module YardTiiExtensions
 
       def determine_type(children)
         if active_record?
-          actual_klass.reflections[children.to_sym].klass.to_s
+          ref = actual_klass.reflections[children.to_sym]
+          ref.options[:polymorphic] ? {:polymorphic => ref.class_name} : ref.class_name
         elsif mongo_mapper?
           actual_klass.associations[children.to_sym].klass.to_s
         else
