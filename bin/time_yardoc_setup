@@ -1,24 +1,5 @@
 #!/usr/bin/env ruby 
 
-# == Synopsis 
-#   Given an application directory, sets up the inital configuration files
-#   to document with yard and yard_tii_extensions
-#
-# == Examples
-#   This command does blah b
-#     time_yardoc_setup /path/to/my_app
-#
-# == Usage 
-#   ruby_cl_skeleton source_file
-#
-# == Options
-#   -h, --help          Displays help message
-#   -v, --version       Display the version, then exit
-#
-# == Author
-#   V. Orion Delwaterman
-#
-
 require 'rubygems'
 require 'bundler'
 begin
@@ -31,25 +12,24 @@ end
 
 
 require 'optparse' 
-require 'rdoc/usage'
 require 'ostruct'
 require 'date'
 
 
 class App
-  VERSION = '0.0.1'
+  NO_GEMFILE = <<-ERROR
+  The application you specified does not have a Gemfile. This gem requires one to work.
+  ERROR
+  
+  NO_INITIALIZERS = <<-ERROR
+  The application you specified does not have a 'config/intializers' directory. This gem requires one to work.
+  ERROR
   
   attr_reader :options
 
   def initialize(arguments, stdin)
     @arguments = arguments
-    @stdin = stdin
     
-    # Set defaults
-    @options = OpenStruct.new
-    @options.verbose = false
-    @options.quiet = false
-    # TO DO - add additional defaults
   end
 
   # Parse options, check arguments, then process the command
@@ -70,10 +50,26 @@ class App
     def parsed_options?
       
       # Specify options
-      opts = OptionParser.new 
-      opts.on('-v', '--version')    { output_version ; exit 0 }
-      opts.on('-h', '--help')       { output_help }
-      # TO DO - add additional options
+      opts = OptionParser.new do |opts|
+        opts.banner = <<-BANNER
+        == Synopsis 
+          Given an application directory, sets up the inital configuration files
+          to document with yard and yard_tii_extensions
+          
+        == Usage
+          time_yardoc_setup /path/to/my_app
+        
+         == Options
+           -h, --help          Displays help message
+           -v, --version       Display the version, then exit
+        
+         == Author
+           V. Orion Delwaterman
+        BANNER
+        opts.on('-v', '--version')    { output_version ; exit 0 }
+        opts.on('-h', '--help')       { puts opts; exit }
+        # TO DO - add additional options
+      end
             
       opts.parse!(@arguments) rescue return false
       
@@ -83,7 +79,7 @@ class App
 
     # Performs post-parse processing on options
     def process_options
-      @options.verbose = false if @options.quiet
+      
     end
     
     def output_options
@@ -102,16 +98,18 @@ class App
     
     # Setup the arguments
     def process_arguments
-      # TO DO - place in local vars, etc
-    end
-    
-    def output_help
-      output_version
-      RDoc::usage() #exits app
-    end
-    
-    def output_usage
-      RDoc::usage('usage') # gets usage from comments above
+      @path_to_app = Pathname.new(@arguments.first).expand_path
+      puts "@path_to_app #{@path_to_app.inspect}"
+      
+      
+      validate_gem_file!
+      validate_initializers!
+      
+      @app_name = guess_app_name(@path_to_app)
+      puts "@app_name #{@app_name}"
+      
+      # create_initializer
+      # add_to_gemfile
     end
     
     def output_version
@@ -119,20 +117,29 @@ class App
     end
     
     def process_command
-      # TO DO - do whatever this app does
-      
-      #process_standard_input # [Optional]
+      puts @arguments.inspect
     end
-
-    def process_standard_input
-      input = @stdin.read      
-      # TO DO - process input
-      
-      # [Optional]
-      #@stdin.each do |line| 
-      #  # TO DO - process each line
-      #end
+    
+    def guess_app_name(path)
+      path.basename.to_s
     end
+      
+    def validate_gem_file!
+      pn = @path_to_app + "Gemfile"
+      unless pn.file?
+        puts NO_GEMFILE
+        exit(1)
+      end
+    end
+    
+    def validate_initializers!
+      pn = @path_to_app + "config/initializers"
+      unless pn.directory?
+        puts NO_INITIALIZERS
+        exit(1)
+      end
+    end
+      
 end
 
 
