@@ -8,7 +8,7 @@ module YardTiiExtensions
     class RouteDescriptorsBuilder
 
       def self.build_routes
-        ::ActionDispatch::Routing::Routes.routes.select{|rt| rt.requirements[:controller] && rt.requirements[:action]}.collect do |route|
+        Rails.application.routes.routes.select{|rt| rt.requirements[:controller] && rt.requirements[:action]}.collect do |route|
           cntrl = route.requirements[:controller].camelcase + "Controller"
           methods = (route.verb || "ANY").to_s.split("|").collect{|s| s.upcase}
           path_parameters = route.segment_keys.collect(&:to_s)
