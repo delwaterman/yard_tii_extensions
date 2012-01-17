@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{yard_tii_extensions}
-  s.version = "0.2.0"
+  s.version = "0.2.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Orion Delwaterman}]
-  s.date = %q{2011-12-22}
+  s.date = %q{2012-01-17}
   s.description = %q{    Set of extensions for YARD documentation tool commonly used by Time Inc. This includes routes
     url params, response formats, and modifications that is used to build documentation for 
     other Time Inc Developers to use our standard JSON services.
